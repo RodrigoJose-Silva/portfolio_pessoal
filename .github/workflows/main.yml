@@ -19,11 +19,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Instalar deps
-        run: npm install
+        run: |
+          npm install
+          cd api-rest && npm install
+          cd ../tests && npm install
         
       - name: Instalar o servidor da aplicação
-        run: npm start &
+        run: |
+          cd api-rest && npm start &
 
       - name: Executar os testes
-        run: npm test
+        run: |
+          cd tests && npm test
              
