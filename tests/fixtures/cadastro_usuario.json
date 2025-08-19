@@ -1,0 +1,12 @@
+{
+    "cpf": "01234567891",
+    "nome": "Maria da Silva",
+    "dataNascimento": "10/03/1995",
+    "senha": "abc12",
+    "confirmaSenha": "abc12",
+    "email": "maria@example.com",
+    "endereco": "Rua A, 123",
+    "cidade": "São Paulo",
+    "estado": "SP",
+    "telefone": "11987654321"
+  }
