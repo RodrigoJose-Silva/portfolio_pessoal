@@ -1,14 +1,14 @@
 {
   "stats": {
     "suites": 2,
-    "tests": 1,
-    "passes": 1,
+    "tests": 2,
+    "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2025-08-19T23:15:43.197Z",
-    "end": "2025-08-19T23:15:43.282Z",
-    "duration": 85,
-    "testsRegistered": 1,
+    "start": "2025-08-20T10:23:05.680Z",
+    "end": "2025-08-20T10:23:05.734Z",
+    "duration": 54,
+    "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "73d1c580-e066-44b6-8264-197bdf3f4b1d",
+      "uuid": "75112d6a-8815-4095-94f5-ad366142a38c",
       "title": "",
       "fullFile": "C:\\Projetos\\Mentoria 2.0\\portfolio_pessoal\\tests\\cadastro.de.usuario.test.js",
       "file": "\\cadastro.de.usuario.test.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "5dd6dddd-f74f-4f67-baf2-e50a187d98bd",
+          "uuid": "692c086b-36ad-445a-aed2-3cc4a9c21102",
           "title": "Cadastro de usuário",
           "fullFile": "C:\\Projetos\\Mentoria 2.0\\portfolio_pessoal\\tests\\cadastro.de.usuario.test.js",
           "file": "\\cadastro.de.usuario.test.js",
@@ -36,7 +36,7 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "724d5699-45c9-4ed2-ab06-330e173ae192",
+              "uuid": "23a82353-e592-42bf-b5d3-2e8db110affc",
               "title": "POST / Cadastro de usuário",
               "fullFile": "C:\\Projetos\\Mentoria 2.0\\portfolio_pessoal\\tests\\cadastro.de.usuario.test.js",
               "file": "\\cadastro.de.usuario.test.js",
@@ -47,29 +47,48 @@
                   "title": "Cadastro de usuário com sucesso deverá retornar o ID do usuário",
                   "fullTitle": "Cadastro de usuário POST / Cadastro de usuário Cadastro de usuário com sucesso deverá retornar o ID do usuário",
                   "timedOut": false,
-                  "duration": 70,
+                  "duration": 44,
                   "state": "passed",
                   "speed": "medium",
                   "pass": true,
                   "fail": false,
                   "pending": false,
                   "context": null,
-                  "code": "const response= await request(process.env.BASE_URL)\n    .post('/users')\n    .set('Content-Type', 'application/json')\n    .send(bodyCadastroUsuario)\n    expect(response.status).to.be.equal(201)",
+                  "code": "const novoUsuario = gerarUsuarioFalso()\nconsole.log(novoUsuario)\nconst response= await request(process.env.BASE_URL)\n    .post('/users')\n    .set('Content-Type', 'application/json')\n    .send(novoUsuario)\n    expect(response.status).to.be.equal(201)\n    expect(response.body.message).to.equal('Usuário cadastrado com sucesso')",
                   "err": {},
-                  "uuid": "863540b8-7be2-462b-9e01-9d6e7334b6b5",
-                  "parentUUID": "724d5699-45c9-4ed2-ab06-330e173ae192",
+                  "uuid": "6f104860-8e7c-4848-bc55-15df8e1155c5",
+                  "parentUUID": "23a82353-e592-42bf-b5d3-2e8db110affc",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Não deverá permitir cadastro com CPF duplicado",
+                  "fullTitle": "Cadastro de usuário POST / Cadastro de usuário Não deverá permitir cadastro com CPF duplicado",
+                  "timedOut": false,
+                  "duration": 5,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const novoUsuario1 = gerarUsuarioFalso();\nconst novoUsuario2 = { ...novoUsuario1, nome: \"João Silva\" }; // Segundo usuário com o mesmo CPF\nawait request(process.env.BASE_URL)\n    .post('/users')\n    .set('Content-Type', 'application/json')\n    .send(novoUsuario1)\nconst response= await request(process.env.BASE_URL)\n    .post('/users')\n    .set('Content-Type', 'application/json')\n    .send(novoUsuario2)\n    expect(response.status).to.be.equal(409)\n    expect(response.body.message).to.equal('Já existe um usuário com este CPF.')",
+                  "err": {},
+                  "uuid": "cf52af0d-eb6a-4e6c-989e-97e129ca59e0",
+                  "parentUUID": "23a82353-e592-42bf-b5d3-2e8db110affc",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "863540b8-7be2-462b-9e01-9d6e7334b6b5"
+                "6f104860-8e7c-4848-bc55-15df8e1155c5",
+                "cf52af0d-eb6a-4e6c-989e-97e129ca59e0"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 70,
+              "duration": 49,
               "root": false,
               "rootEmpty": false,
               "_timeout": 200000
