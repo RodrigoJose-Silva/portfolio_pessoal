@@ -1,4 +1,3 @@
-
 name: 'Portfolio Pessoal - CI'
 
 on: 
@@ -12,18 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      API_BASE_URL: 'http://localhost:3333'
+      BASE_URL: 'http://localhost:3333'
       
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
       - name: Instalar deps
-        run: npm install
+        run: |
+          cd api-rest && npm install
+          cd ../tests && npm install
         
       - name: Instalar o servidor da aplicação
-        run: npm start &
+        run: |
+          cd api-rest && npm start &
 
       - name: Executar os testes
-        run: npm test
+        run: |
+          cd tests && npm test
              
