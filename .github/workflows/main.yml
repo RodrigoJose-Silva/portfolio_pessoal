@@ -18,14 +18,17 @@ jobs:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Instalar deps
+      - name: Instalar deps app
         run: |
           cd api-rest && npm install
-          cd tests && npm install
-        
+          
       - name: Instalar o servidor da aplicação
         run: |
           cd api-rest && npm start &
+
+      - name: Instalar deps tests
+        run: |
+          cd tests && npm install
 
       - name: Executar os testes
         run: |
