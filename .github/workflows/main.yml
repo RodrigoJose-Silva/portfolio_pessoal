@@ -35,9 +35,9 @@ jobs:
 
       - name: Instalar dependências dos testes
         run: |
-          cd ../tests && npm install
+          cd tests && npm install
 
       - name: Executar os testes
         run: |
-          cd ../tests && npm test
+          cd tests && npm test
           
