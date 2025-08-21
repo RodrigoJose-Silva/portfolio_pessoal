@@ -39,5 +39,5 @@ jobs:
 
       - name: Executar os testes
         run: |
-          cd tests && npm test
+          cd tests && npx test
           
