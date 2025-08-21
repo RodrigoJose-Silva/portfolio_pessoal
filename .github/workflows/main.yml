@@ -37,7 +37,12 @@ jobs:
         run: |
           cd tests && npm install
 
-      - name: Executar os testes via npm test
+      - name: Executar os testes com reporter Mochawesome via npm test
         run: |
           cd tests && chmod +x ./node_modules/.bin/mocha && npm test
-          
+
+      - name: Upload do relatório de testes (HTML)
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report
+          path: tests/mochawesome-report/          
