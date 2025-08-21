@@ -35,16 +35,9 @@ jobs:
 
       - name: Instalar dependências dos testes
         run: |
-          cd tests
-          npm install
-
-      - name: Esperar antes de rodar os testes
-        run: |
-          echo "Aguardando 5 segundos..."
-          sleep 5
+          cd ../tests && npm install
 
       - name: Executar os testes
         run: |
-          cd tests
-          npm test
+          cd ../tests && npm test
           
