@@ -1,4 +1,3 @@
-
 name: 'Portfolio Pessoal - CI'
 
 on: 
@@ -18,16 +17,33 @@ jobs:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Instalar deps
+      - name: Instalar dependências da API
         run: |
           cd api-rest && npm install
-          cd ../tests && npm install
-        
-      - name: Instalar o servidor da aplicação
+          
+      - name: Iniciar servidor da API
         run: |
           cd api-rest && npm start &
+        shell: bash
 
-      - name: Executar os testes
+      - name: Esperar o servidor subir
         run: |
-          cd tests && npm test
-             
+          echo "Esperando o servidor estar disponível..."
+          until curl -s http://localhost:3333 > /dev/null; do
+            sleep 1
+          done
+
+      - name: Instalar dependências dos testes
+        run: |
+          cd tests && npm install
+
+      - name: Executar os testes com reporter Mochawesome via npm test
+        run: |
+          cd tests && chmod +x ./node_modules/.bin/mocha && npm test
+
+      - name: Upload do relatório de testes (HTML)
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report
+          path: tests/mochawesome-report/
+          
