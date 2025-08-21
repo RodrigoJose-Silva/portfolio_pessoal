@@ -99,7 +99,7 @@ class UserService {
     static registerUser(payload) {
         const validationErrors = this.validateRegistrationPayload(payload);
         if (validationErrors.length > 0) {
-            const error = new Error('Erros de validação');
+            const error = new Error(validationErrors.join(' | '));
             error.statusCode = 400;
             error.details = validationErrors;
             throw error;
