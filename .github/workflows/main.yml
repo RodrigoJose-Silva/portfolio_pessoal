@@ -37,7 +37,7 @@ jobs:
         run: |
           cd tests && npm install
 
-      - name: Executar os testes
+      - name: Executar os testes via npm test
         run: |
-          cd tests && npx test
+          cd tests && chmod +x ./node_modules/.bin/mocha && npm test
           
