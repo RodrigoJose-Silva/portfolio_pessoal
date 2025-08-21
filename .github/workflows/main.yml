@@ -21,7 +21,7 @@ jobs:
       - name: Instalar deps
         run: |
           cd api-rest && npm install
-          cd ../tests && npm install
+          cd tests && npm install
         
       - name: Instalar o servidor da aplicação
         run: |
