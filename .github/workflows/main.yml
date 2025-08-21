@@ -17,11 +17,11 @@ jobs:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Instalar deps app
+      - name: Instalar dependências da API
         run: |
           cd api-rest && npm install
           
-      - name: Instalar o servidor da aplicação
+      - name: Iniciar servidor da API
         run: |
           cd api-rest && npm start &
         shell: bash
@@ -37,6 +37,11 @@ jobs:
         run: |
           cd tests
           npm install
+
+      - name: Esperar antes de rodar os testes
+        run: |
+          echo "Aguardando 5 segundos..."
+          sleep 5
 
       - name: Executar os testes
         run: |
