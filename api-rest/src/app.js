@@ -19,13 +19,15 @@ app.use('/', routes);
 // Documentação Swagger em /api-docs
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+// Este arquivo inicializa a aplicação Express, configura os middlewares globais e integra as rotas e a documentação Swagger.
+// O objetivo é centralizar a configuração da API REST, facilitando manutenção e entendimento do fluxo principal.
 // Middleware de rota inexistente
+// Este middleware captura qualquer requisição para rotas não definidas, retornando um erro 404 padronizado.
 app.use((req, res, next) => {
     return res.status(404).json({ message: 'Rota não encontrada' });
 });
-
 // Middleware de tratamento de erros
-// Observação: mantém respostas consistentes para qualquer erro não tratado
+// Este middleware garante que erros não tratados sejam respondidos de forma consistente, facilitando o diagnóstico.
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || 'Erro interno do servidor';

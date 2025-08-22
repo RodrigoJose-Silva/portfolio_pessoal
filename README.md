@@ -1,140 +1,91 @@
 <div align="center">
 
-# API REST - Gestão de Login 👤🔐
+# Portfólio Pessoal - Mentoria 2.0 🚀👨‍💻
 
-API em Node.js + Express para cadastro de usuários (em memória) e autenticação, com documentação via Swagger.
+Projeto desenvolvido como parte dos estudos da Mentoria 2.0 ministrada por Júlio de Lima, com o objetivo de criar um portfólio pessoal profissional, focado em boas práticas de desenvolvimento, testes automatizados e documentação.
 
 </div>
 
-## ✨ Sobre
+## 🗂️ Componentes do Projeto
 
-Esta API foi desenvolvida como parte de um portfólio pessoal para demonstrar boas práticas de **Qualidade de Testes**, camadas (Controller/Service/Repository), validações e documentação.
+- **API REST** (`api-rest/`)<br>API para cadastro e autenticação de usuários, desenvolvida em Node.js + Express, com documentação via Swagger.
+- **Testes Automatizados** (`api-tests/`)<br>Scripts de automação de testes utilizando Mocha, Chai, Supertest e Mochawesome.
+- **Pipeline CI** (`.github/workflows/`)<br>Configuração para execução automatizada dos testes.
+- **Artefatos** (`artfacts/`)<br>Documentos de requisitos e plano de testes.
 
-## 🧩 Requisitos Funcionais (Resumo)
+## 🛠️ Tecnologias Utilizadas
 
-- **R01 — Cadastro de usuário**: permitido se não existir CPF já cadastrado
-- **R02 — CPF**: 11 dígitos numéricos (pode iniciar com 0) — obrigatório
-- **R03 — CPF único**: não é possível cadastrar dois usuários com o mesmo CPF
-- **R04 — Nome**: entre 3 e 100 caracteres — obrigatório
-- **R05 — Data de nascimento**: formato dd/mm/aaaa — obrigatório
-- **R06 — Idade mínima**: apenas 18+ anos
-- **R07 — Senha**: alfanumérica, entre 5 e 12 caracteres — obrigatória
-- **R08 — Confirmação de senha**: deve ser igual à senha — obrigatória
-- **R09 — E-mail**: formato válido — obrigatório
-- **R10 — Endereço**: 3 a 200 caracteres (opcional)
-- **R11 — Cidade**: 3 a 100 caracteres (opcional)
-- **R12 — Estado**: 2 letras (opcional)
-- **R13 — Telefone**: 11 dígitos numéricos (opcional)
+- ![Express](https://img.shields.io/badge/Express.js-000?logo=express&logoColor=white)
+- ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black)
+- ![CORS](https://img.shields.io/badge/CORS-000?logo=cors&logoColor=white)
+- ![Helmet](https://img.shields.io/badge/Helmet-000?logo=helmet&logoColor=white)
+- ![Mocha](https://img.shields.io/badge/Mocha-8D6748?logo=mocha&logoColor=white)
+- ![Chai](https://img.shields.io/badge/Chai-A30701?logo=chai&logoColor=white)
+- ![Supertest](https://img.shields.io/badge/Supertest-000?logo=supertest&logoColor=white)
+- ![Mochawesome](https://img.shields.io/badge/Mochawesome-000?logo=mochawesome&logoColor=white)
+- ![Faker](https://img.shields.io/badge/Faker-000?logo=faker&logoColor=white)
 
-## 🛠️ Tecnologias
+## 📦 Instalação e Execução
 
-- Node.js
-- Express
-- Helmet
-- CORS
-- Swagger UI
+### API REST
 
-## 🗂️ Estrutura do Projeto
+1. Acesse a pasta `api-rest`:
+   ```bash
+   cd api-rest
+   ```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+3. Inicie o servidor em modo desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+   Ou em modo produção:
+   ```bash
+   npm start
+   ```
+4. Acesse a documentação Swagger:<br>
+   [http://localhost:3333/api-docs](http://localhost:3333/api-docs)
 
-```
-api-rest/
-  ├─ src/
-  │  ├─ controllers/
-  │  │  ├─ AuthController.js
-  │  │  └─ UserController.js
-  │  ├─ docs/
-  │  │  └─ swagger.js
-  │  ├─ repositories/
-  │  │  └─ UserRepository.js
-  │  ├─ routes/
-  │  │  ├─ authRoutes.js
-  │  │  ├─ index.js
-  │  │  └─ userRoutes.js
-  │  ├─ services/
-  │  │  ├─ AuthService.js
-  │  │  └─ UserService.js
-  │  ├─ utils/
-  │  │  └─ validators.js
-  │  ├─ app.js
-  │  └─ server.js
-  ├─ package.json
-  └─ README.md
-```
+### Testes Automatizados
 
-## 🚀 Como instalar e rodar
+1. Acesse a pasta `api-tests`:
+   ```bash
+   cd api-tests
+   ```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+3. Execute os testes (API REST deve estar rodando):
+   ```bash
+   npm test
+   ```
+4. Relatórios gerados em `mochawesome-report/mochawesome.html`
 
-1. Instale as dependências:
+## 🔎 Estrutura dos Testes
 
-```bash
-npm install
-```
+- **fixtures/**: Dados de exemplo para cadastro de usuário (`cadastro_usuario.json`).
+- **tests/**: Scripts de teste automatizado (`cadastro.de.usuario.test.js`).
+- **mochawesome-report/**: Relatórios de execução dos testes.
 
-2. Inicie o servidor em modo desenvolvimento (com auto-reload):
+## 🧪 Exemplos de Testes
 
-```bash
-npm run dev
-```
+- Testes de cadastro de usuário, validação de regras de negócio, CPF único, formatos e restrições de campos.
+- Testes automatizados utilizam dados dinâmicos gerados pelo Faker para garantir cobertura variada.
 
-3. Ou inicie em modo produção:
+## 📝 Observações Importantes
 
-```bash
-npm start
-```
+- API REST utiliza persistência em memória, sem banco de dados.
+- Senhas são mantidas em texto simples apenas para fins didáticos.
+- Todas as validações estão na camada de serviço.
+- Para executar os testes, a API deve estar rodando localmente.
 
-4. Acesse a documentação Swagger:
+## 🤝 Contribuição
 
-- URL: `http://localhost:3333/api-docs`
-
-## 📚 Endpoints principais
-
-- `POST /users`: cadastra um novo usuário (em memória)
-- `POST /auth/login`: autentica via CPF ou e-mail + senha
-
-## 🧪 Exemplos de requisição
-
-Cadastro (`POST /users`):
-
-```json
-{
-  "cpf": "01234567890",
-  "nome": "Maria da Silva",
-  "dataNascimento": "10/03/1995",
-  "senha": "abc12",
-  "confirmaSenha": "abc12",
-  "email": "maria@example.com",
-  "endereco": "Rua A, 123",
-  "cidade": "São Paulo",
-  "estado": "SP",
-  "telefone": "11987654321"
-}
-```
-
-Login (`POST /auth/login`):
-
-```json
-{
-  "cpf": "01234567890",
-  "senha": "abc12"
-}
-```
-
-ou
-
-```json
-{
-  "email": "maria@example.com",
-  "senha": "abc12"
-}
-```
-
-## 🧱 Observações
-
-- Persistência apenas em memória (não há banco de dados)
-- Senhas são mantidas em texto simples apenas para fins didáticos deste exercício
-- Todas as regras de validação estão na camada de serviço
+Este projeto foi criado para fins de estudo e aprimoramento profissional, seguindo as orientações da Mentoria 2.0.
 
 ---
 
-Feito com atenção aos detalhes para compor um portfólio pessoal profissional.
-
-
+Feito com dedicação para compor um portfólio pessoal profissional.

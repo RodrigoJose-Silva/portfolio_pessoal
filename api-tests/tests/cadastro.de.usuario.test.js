@@ -7,13 +7,18 @@ const cadastro_usuario = require('../fixtures/cadastro_usuario.json')
 const { faker } = require('@faker-js/faker')
 
 
+// Testes automatizados para o cadastro de usuário na API REST
+// Este arquivo cobre cenários de sucesso e validações das regras de negócio
+// Utilize o comando 'npm test' para executar os testes e gerar o relatório interativo
 describe('Cadastro de usuário', () => {
+    // Função utilitária para gerar CPF válido e aleatório
     function gerarCPF() {
         return faker.string.numeric({ length: 11, allowLeadingZeros: true });
     }
 
     /**
      * Gera uma senha alfanumérica entre 5 e 12 caracteres.
+     * Utiliza o Faker para garantir variedade nos testes.
      */
     function gerarSenhaValida() {
         // Garante que a senha seja alfanumérica
@@ -26,6 +31,7 @@ describe('Cadastro de usuário', () => {
 
     /**
      * Gera um usuário válido com base em todas as regras de negócio.
+     * Utiliza dados dinâmicos para aumentar a cobertura dos testes.
      */
     function gerarUsuarioFalso() {
         const senha = gerarSenhaValida();
@@ -59,8 +65,10 @@ describe('Cadastro de usuário', () => {
     }
 
     describe('POST / Cadastro de usuário', () => {
+        // Utiliza dados do fixture para garantir consistência nos testes
         const bodyCadastroUsuario = { ...cadastro_usuario }
         it('Cadastro de usuário com sucesso deverá retornar o ID do usuário', async () => {
+            // Gera um usuário válido e dinâmico para o teste
             const novoUsuario = gerarUsuarioFalso()
 
             const response = await request(process.env.BASE_URL)
