@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "cadastro.de.usuario.tests.js",
   "scripts": {
-    "test": "mocha ../tests/**/*.test.js --timeout=200000 --reporter mochawesome"
+    "test": "mocha ../api-tests/tests/**/*.test.js --timeout=200000 --reporter mochawesome"
   },
   "keywords": [],
   "author": "",

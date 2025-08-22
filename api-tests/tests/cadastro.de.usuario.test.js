@@ -3,7 +3,7 @@ const request = require('supertest')
 // Importa a função 'expect' da biblioteca 'chai' para asserções nos testes
 const { expect } = require('chai')
 require('dotenv').config()
-const cadastro_usuario = require('./fixtures/cadastro_usuario.json')
+const cadastro_usuario = require('../fixtures/cadastro_usuario.json')
 const { faker } = require('@faker-js/faker')
 
 

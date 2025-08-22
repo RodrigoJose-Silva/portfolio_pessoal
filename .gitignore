@@ -1,4 +1,4 @@
-./api-rest/node_modules/
-./api-tests/mochawesom-report/
-./api-tests/node_modules/
-./api-tests/.env
+api-rest/node_modules/
+api-tests/mochawesom-report/
+api-tests/node_modules/
+api-tests/.env
